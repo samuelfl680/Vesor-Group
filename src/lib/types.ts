@@ -1,3 +1,4 @@
+/** Tipos de inversión que el usuario puede elegir en el formulario de análisis. */
 export const TIPOS = [
   "Criptomonedas",
   "Acciones / ETF",
@@ -8,6 +9,7 @@ export const TIPOS = [
   "Otro",
 ] as const;
 
+/** Canales por los que el usuario pudo conocer la oportunidad. */
 export const FUENTES = [
   "Influencer / creador de contenido",
   "Grupo de WhatsApp / Telegram / Discord",
@@ -17,8 +19,10 @@ export const FUENTES = [
   "Otra",
 ] as const;
 
+/** Respuestas posibles a la pregunta de si la oportunidad está regulada. */
 export const REGULADA = ["Sí", "No", "No sé"] as const;
 
+/** Datos de una oportunidad de inversión, ya validados, que se envían al motor de riesgo. */
 export interface OportunidadInput {
   nombre: string;
   tipo: string;
@@ -32,13 +36,16 @@ export interface OportunidadInput {
   evidencia: string;
 }
 
+/** Nivel de riesgo que muestra el semáforo. */
 export type Nivel = "bajo" | "medio" | "alto";
 
+/** Señal concreta que explica por qué se asignó un nivel de riesgo. */
 export interface Factor {
   titulo: string;
   detalle: string;
 }
 
+/** Resultado del análisis tal como se guarda en `analyses.resultado` y se muestra al usuario. */
 export interface ResultadoRiesgo {
   nivel: Nivel;
   resumen: string;

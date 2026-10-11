@@ -1,6 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
+/** Cliente de Supabase para el servidor (Server Components y rutas API); lee la sesión desde las cookies. */
 export function createClient() {
   const cookieStore = cookies();
   return createServerClient(

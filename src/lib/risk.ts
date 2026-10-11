@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { OportunidadInput, ResultadoRiesgo } from "./types";
 
+/** Prompt de sistema que define los criterios de riesgo y el formato JSON de la respuesta. */
 const SYSTEM = `Eres el motor de evaluación de riesgo de Vesor, una herramienta para inversionistas principiantes (18-34 años) en Latinoamérica.
 Tu tarea: clasificar el riesgo de una oportunidad de inversión usando SOLO los datos que entrega el usuario.
 
@@ -25,6 +26,7 @@ Responde ÚNICAMENTE con un JSON válido (sin markdown ni texto extra) con esta 
 }
 "factores" debe tener entre 2 y 5 elementos concretos basados en los datos del usuario.`;
 
+/** Arma el mensaje del usuario, encerrando sus datos en <datos_usuario> para que el modelo no los trate como instrucciones. */
 function buildUserMessage(i: OportunidadInput): string {
   return `<datos_usuario>
 Nombre de la oportunidad: ${i.nombre}
@@ -40,6 +42,7 @@ ${i.evidencia}
 </datos_usuario>`;
 }
 
+/** Extrae el primer objeto JSON del texto, ignorando cualquier texto antes o después. */
 function extractJson(text: string): unknown {
   const start = text.indexOf("{");
   const end = text.lastIndexOf("}");
@@ -47,6 +50,10 @@ function extractJson(text: string): unknown {
   return JSON.parse(text.slice(start, end + 1));
 }
 
+/**
+ * Verifica que la respuesta del modelo tenga la forma de `ResultadoRiesgo` y la normaliza:
+ * recorta textos, limita a 5 factores y 6 datos faltantes, y usa "media" si la confianza no es válida.
+ */
 export function validarResultado(x: any): ResultadoRiesgo {
   if (!x || typeof x !== "object") throw new Error("Respuesta no es objeto");
   if (!["bajo", "medio", "alto"].includes(x.nivel)) throw new Error("nivel inválido");
