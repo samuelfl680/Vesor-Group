@@ -12,10 +12,11 @@ Requisitos: Node.js 18.17+ y una cuenta gratuita en [Supabase](https://supabase.
    ```bash
    npm install
    ```
-2. **Crear el proyecto en Supabase** y abrir *SQL Editor → New query*. Pegar el contenido de `supabase/schema.sql` y ejecutar (crea la tabla `analyses` con seguridad por usuario).
-3. **Para la demo**: en Supabase → *Authentication → Providers → Email*, desactivar **"Confirm email"** (así el registro entra directo, sin pasos manuales).
+2. **Configurar Supabase**: confirmar que el proyecto del equipo es el configurado en `.env.local`. Abrir *SQL Editor → New query*, pegar el contenido de `supabase/schema.sql` y ejecutar (crea la tabla `analyses` con seguridad por usuario).
+3. **Acceso de demo**: en Supabase → *Authentication → Providers*, activar **Anonymous Sign-Ins**. Para desarrollo local, mantener desactivada la protección CAPTCHA. La aplicación usa una sesión anónima y no crea cuentas por correo.
 4. **Variables de entorno**: copiar `.env.example` a `.env.local` y completar:
-   - `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_ANON_KEY` → Supabase *Project Settings → API*.
+   - `NEXT_PUBLIC_SUPABASE_URL` → Supabase *Project Settings → API*.
+   - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` → Supabase *Project Settings → API*. También se acepta `NEXT_PUBLIC_SUPABASE_ANON_KEY` por compatibilidad.
    - `ANTHROPIC_API_KEY` → console.anthropic.com. **Nunca** subirla al repositorio.
    - `ANTHROPIC_MODEL` (opcional, por defecto `claude-sonnet-5-5`).
 5. **Iniciar**

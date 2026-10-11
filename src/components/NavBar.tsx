@@ -23,12 +23,7 @@ export default async function NavBar() {
             <LogoutButton />
           </>
         ) : (
-          <>
-            <Link href="/login">Ingresar</Link>
-            <Link href="/registro" className="btn" style={{ padding: "8px 14px", fontSize: 14 }}>
-              Crear cuenta
-            </Link>
-          </>
+          <Link href="/login">Entrar a la demo</Link>
         )}
       </div>
     </nav>
