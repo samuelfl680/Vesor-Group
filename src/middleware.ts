@@ -1,8 +1,13 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+/** Rutas que requieren sesión iniciada. */
 const PROTEGIDAS = ["/analizar", "/historial", "/resultado"];
 
+/**
+ * Refresca la sesión de Supabase en cada petición y controla el acceso:
+ * sin sesión redirige las rutas protegidas a /login, y con sesión saca al usuario de /login y /registro.
+ */
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
 
@@ -41,6 +46,7 @@ export async function middleware(request: NextRequest) {
   return response;
 }
 
+/** Excluye archivos estáticos, imágenes y rutas /api (que validan la sesión por su cuenta). */
 export const config = {
   matcher: ["/((?!_next/static|_next/image|favicon.ico|api/).*)"],
 };

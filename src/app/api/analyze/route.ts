@@ -3,8 +3,14 @@ import { createClient } from "@/lib/supabase/server";
 import { validarInput } from "@/lib/types";
 import { evaluarRiesgo } from "@/lib/risk";
 
+/** Tiempo máximo (segundos) para la función, ya que la llamada a Claude puede tardar. */
 export const maxDuration = 60;
 
+/**
+ * POST /api/analyze: valida los datos de la oportunidad, la evalúa con Claude y guarda el análisis.
+ * Respuestas: 200 `{ id }`, 401 sin sesión, 400 JSON inválido, 422 `{ error, fields }` con errores por campo,
+ * 500 si falla el análisis o el guardado.
+ */
 export async function POST(req: Request) {
   const supabase = createClient();
   const {
