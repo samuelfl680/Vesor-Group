@@ -1,34 +1,49 @@
 import Link from "next/link";
+import { createClient } from "@/lib/supabase/server";
+import MarketBoard from "@/components/MarketBoard";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const displayName = user && !user.is_anonymous
+    ? user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split("@")[0] || "usuario"
+    : "Anonymous";
+
   return (
     <>
-      <div className="card" style={{ marginTop: 24 }}>
-        <h1>¿Vale la pena esa inversión o es un riesgo?</h1>
-        <p>
-          Vesor evalúa en segundos el riesgo de una oportunidad de inversión que viste en redes o te recomendaron,
-          antes de que pongas tu dinero. Recibes un semáforo (bajo, medio o alto) y los factores que lo sustentan.
-        </p>
+      <section className="home-hero">
+        <h1>Bienvenido, {displayName}</h1>
         <div className="actions">
-          <Link href="/registro" className="btn">
-            Empezar gratis
+          <Link href="/analizar" className="btn">
+            Nuevo análisis
           </Link>
-          <Link href="/login" className="btn secondary">
-            Ya tengo cuenta
-          </Link>
+          {user ? (
+            <Link href="/historial" className="btn secondary">
+              Ver historial
+            </Link>
+          ) : (
+            <Link href="/login" className="btn secondary">
+              Entrar a la demo
+            </Link>
+          )}
         </div>
-      </div>
-      <div className="card">
-        <h2>Cómo funciona</h2>
+      </section>
+
+      <MarketBoard />
+
+      <div className="card home-guide">
+        <h2>Decide con más contexto</h2>
         <ol>
-          <li>Crea tu cuenta con correo y contraseña.</li>
-          <li>Cuéntanos de la oportunidad: qué es, cuánto prometen y de dónde la conociste.</li>
-          <li>Recibe la clasificación con al menos dos razones concretas.</li>
-          <li>Consulta tus análisis anteriores cuando quieras.</li>
+          <li>Describe la oportunidad que estás considerando.</li>
+          <li>Revisa las señales de riesgo que encuentra el análisis.</li>
+          <li>Verifica la información con fuentes oficiales antes de invertir.</li>
         </ol>
         <p className="disclaimer">
-          Vesor es una herramienta informativa y no constituye asesoría financiera. Siempre verifica con fuentes
-          oficiales antes de invertir.
+          Las cotizaciones son informativas y pueden tener retraso. Vesor no constituye asesoría financiera.
         </p>
       </div>
     </>

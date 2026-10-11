@@ -19,11 +19,19 @@ Requisitos: Node.js 18.17+ y una cuenta gratuita en [Supabase](https://supabase.
    - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` → Supabase *Project Settings → API*. También se acepta `NEXT_PUBLIC_SUPABASE_ANON_KEY` por compatibilidad.
    - `ANTHROPIC_API_KEY` → console.anthropic.com. **Nunca** subirla al repositorio.
    - `ANTHROPIC_MODEL` (opcional, por defecto `claude-sonnet-5-5`).
+   - `MARKET_DATA_PROVIDER` (opcional, por defecto `demo`; usar `alpha-vantage` con una clave configurada).
+   - `ALPHA_VANTAGE_API_KEY` (opcional) → clave del proveedor financiero. Si falta, se muestran datos de demostración claramente etiquetados.
 5. **Iniciar**
    ```bash
    npm run dev
    ```
    Abrir http://localhost:3000.
+
+## Cotizaciones de mercado
+
+La página principal muestra una watchlist inicial de NVIDIA (`NVDA`), Tesla (`TSLA`) y Microsoft (`MSFT`). El acceso pasa por `src/lib/market-data.ts` y `/api/market`, de modo que la interfaz no depende de un proveedor concreto y la fuente se puede cambiar sin rehacer la página.
+
+El proveedor inicial soportado es Alpha Vantage mediante `GLOBAL_QUOTE`. Su plan gratuito tiene límites de uso y las cotizaciones de mercado pueden ser retrasadas o estar sujetas a licencias de bolsa; la aplicación muestra la fecha disponible y no debe presentar estos datos como tiempo real sin el permiso correspondiente. Yahoo Finance puede servir para investigación, pero sus endpoints no oficiales y sus condiciones de uso no son una base suficiente para redistribuir cotizaciones públicamente sin revisión legal. Para producción se debe elegir un plan/proveedor que permita explícitamente la visualización pública.
 
 ## Estructura
 

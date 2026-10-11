@@ -18,7 +18,7 @@ export default async function NavBar() {
       <div className="links">
         {user ? (
           <>
-            <Link href="/analizar">Nuevo análisis</Link>
+            <Link href="/">Inicio</Link>
             <Link href="/historial">Historial</Link>
             <LogoutButton />
           </>
