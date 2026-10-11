@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
+/** Formulario de correo y contraseña que sirve tanto para ingresar (`login`) como para crear cuenta (`registro`). */
 export default function AuthForm({ mode }: { mode: "login" | "registro" }) {
   const router = useRouter();
   const [email, setEmail] = useState("");

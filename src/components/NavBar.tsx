@@ -4,6 +4,7 @@ import LogoutButton from "./LogoutButton";
 
 export const dynamic = "force-dynamic";
 
+/** Barra de navegación; muestra enlaces distintos según si hay un usuario con sesión. */
 export default async function NavBar() {
   const supabase = createClient();
   const {
