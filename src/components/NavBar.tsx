@@ -19,11 +19,15 @@ export default async function NavBar() {
         {user ? (
           <>
             <Link href="/">Inicio</Link>
+            <Link href="/analizar">Simulador</Link>
             <Link href="/historial">Historial</Link>
             <LogoutButton />
           </>
         ) : (
-          <Link href="/login">Entrar a la demo</Link>
+          <>
+            <Link href="/analizar">Simulador</Link>
+            <Link href="/login">Entrar a la demo</Link>
+          </>
         )}
       </div>
     </nav>
