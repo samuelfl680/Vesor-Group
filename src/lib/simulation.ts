@@ -3,6 +3,7 @@ export type Sensitivity = "baja" | "media" | "alta";
 
 export type SimulationConfig = {
   company: string;
+  amount: number;
   context: string;
   startDate: string;
   endDate: string;
@@ -115,6 +116,7 @@ export const DEMO_COMPANIES: DemoCompany[] = [
 
 export const DEFAULT_SIMULATION: SimulationConfig = {
   company: "NVDA",
+  amount: 500000,
   context: "",
   startDate: "2026-09-01",
   endDate: "2026-10-11",

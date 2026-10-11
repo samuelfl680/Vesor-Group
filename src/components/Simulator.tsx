@@ -68,6 +68,17 @@ function ScenarioBars({ result }: { result: SimulationResult }) {
   );
 }
 
+function RiskPyramid({ risk }: { risk: number }) {
+  const level = risk < 34 ? "bajo" : risk < 67 ? "medio" : "alto";
+  return (
+    <div className="risk-pyramid" role="img" aria-label={`Pirámide de riesgo ${level}, riesgo estimado ${percent(risk)}`}>
+      <div className={`pyramid-tier pyramid-high ${level === "alto" ? "pyramid-active" : ""}`}><span>Alto</span></div>
+      <div className={`pyramid-tier pyramid-medium ${level === "medio" ? "pyramid-active" : ""}`}><span>Medio</span></div>
+      <div className={`pyramid-tier pyramid-low ${level === "bajo" ? "pyramid-active" : ""}`}><span>Bajo</span></div>
+    </div>
+  );
+}
+
 export default function Simulator() {
   const [config, setConfig] = useState<SimulationConfig>(DEFAULT_SIMULATION);
   const [result, setResult] = useState<SimulationResult>(() => runSimulation(DEFAULT_SIMULATION));
@@ -138,6 +149,10 @@ export default function Simulator() {
           </div>
         </div>
 
+        <label htmlFor="amount">Monto estimado de inversión (COP)</label>
+        <input id="amount" type="number" min="0" step="10000" value={config.amount} onChange={(event) => updateConfig("amount", Number(event.target.value))} placeholder="Ej: 500000" />
+        <p className="field-hint">Se usa para mostrar la exposición estimada; no cambia por sí solo el riesgo de la empresa.</p>
+
         <label htmlFor="context">Contexto de la oportunidad</label>
         <textarea
           id="context"
@@ -205,7 +220,7 @@ export default function Simulator() {
           ))}
         </div>
 
-        {tab === "resumen" && <div className="tab-panel"><RiskCurve result={result} /><p className="disclaimer">La distribución es una estimación de prototipo, no una predicción ni asesoría financiera.</p></div>}
+        {tab === "resumen" && <div className="tab-panel"><RiskCurve result={result} /><div className="pyramid-block"><h3>Pirámide de riesgo</h3><RiskPyramid risk={result.meanRisk} /><p className="muted">La posición muestra la zona de riesgo estimada dentro de la distribución.</p></div><div className="exposure-line"><span>Monto simulado</span><strong>{new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(result.config.amount || 0)}</strong></div><p className="disclaimer">La distribución es una estimación de prototipo, no una predicción ni asesoría financiera.</p></div>}
         {tab === "contexto" && <div className="tab-panel context-panel"><div className="advice-box"><strong>Asistente de prototipo</strong><p>{result.advice}</p><small>Esta orientación es heurística y no sustituye asesoría financiera. Cuando conectes una API de IA, este bloque podrá enriquecerse con análisis estructurado.</small></div><div className="context-signals">{result.contextSignals.map((signal) => <article className="context-signal" key={signal.label}><div><strong>{signal.label}</strong><b>{signal.impact > 0 ? `+${signal.impact}` : signal.impact} riesgo</b></div><p>{signal.detail}</p></article>)}</div>{result.contextSignals.length === 0 && <p className="muted">No se detectaron señales específicas. Añade contexto para obtener una lectura más útil.</p>}</div>}
         {tab === "evidencia" && <div className="tab-panel"><div className="evidence-grid">{result.analyzedNews.map((news) => <article className="evidence-item" key={`${news.date}-${news.title}`}><div><strong>{news.category}</strong><span>{news.date} · {news.source}</span></div><p>{news.title}</p><b className={news.impact > 0 ? "negative" : "positive"}>{news.impact > 0 ? "Aumenta riesgo" : "Reduce riesgo"} · {news.relevance}% relevancia</b></article>)}</div>{result.analyzedNews.length === 0 && <p className="muted">No hay evidencia demo para este rango.</p>}</div>}
         {tab === "relaciones" && <div className="tab-panel"><div className="relation-grid">{result.relations.map((relation) => <article className="relation-item" key={relation.symbol}><div><strong>{relation.name} ({relation.symbol})</strong><span>{relation.type}</span></div><div className="relation-strength"><span style={{ width: `${relation.strength * 100}%` }} /><b>{Math.round(relation.strength * 100)}%</b></div><p>Impacto transmitido: {relation.impact > 0 ? "+" : ""}{relation.impact} puntos de riesgo</p></article>)}</div>{result.relations.length === 0 && <p className="muted">Las relaciones están desactivadas para este escenario.</p>}</div>}
