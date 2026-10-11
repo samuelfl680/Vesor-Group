@@ -9,7 +9,7 @@ import {
   type SimulationResult,
 } from "@/lib/simulation";
 
-type Tab = "resumen" | "evidencia" | "relaciones" | "escenarios";
+type Tab = "resumen" | "contexto" | "evidencia" | "relaciones" | "escenarios";
 
 const LEVELS = [
   [1, "Empresa individual"],
@@ -138,6 +138,16 @@ export default function Simulator() {
           </div>
         </div>
 
+        <label htmlFor="context">Contexto de la oportunidad</label>
+        <textarea
+          id="context"
+          value={config.context}
+          maxLength={3000}
+          onChange={(event) => updateConfig("context", event.target.value)}
+          placeholder="Ej: Una persona dice que depositando en la plataforma X duplico el dinero en 30 días y pide pagar a una billetera cripto."
+        />
+        <p className="field-hint">El prototipo identifica señales de riesgo en el texto. Más adelante este paso podrá usar Jev o ChatGPT.</p>
+
         {config.mode === "personalizado" && (
           <div className="advanced-config">
             <div className="row">
@@ -190,12 +200,13 @@ export default function Simulator() {
         </div>
 
         <div className="simulator-tabs" role="tablist" aria-label="Detalle de simulación">
-          {([["resumen", "Resumen"], ["evidencia", "Evidencia"], ["relaciones", "Relaciones"], ["escenarios", "Escenarios"]] as const).map(([value, label]) => (
+          {([["resumen", "Resumen"], ["contexto", "Contexto"], ["evidencia", "Evidencia"], ["relaciones", "Relaciones"], ["escenarios", "Escenarios"]] as const).map(([value, label]) => (
             <button type="button" role="tab" aria-selected={tab === value} className={tab === value ? "tab-active" : ""} key={value} onClick={() => setTab(value)}>{label}</button>
           ))}
         </div>
 
         {tab === "resumen" && <div className="tab-panel"><RiskCurve result={result} /><p className="disclaimer">La distribución es una estimación de prototipo, no una predicción ni asesoría financiera.</p></div>}
+        {tab === "contexto" && <div className="tab-panel context-panel"><div className="advice-box"><strong>Asistente de prototipo</strong><p>{result.advice}</p><small>Esta orientación es heurística y no sustituye asesoría financiera. Cuando conectes una API de IA, este bloque podrá enriquecerse con análisis estructurado.</small></div><div className="context-signals">{result.contextSignals.map((signal) => <article className="context-signal" key={signal.label}><div><strong>{signal.label}</strong><b>{signal.impact > 0 ? `+${signal.impact}` : signal.impact} riesgo</b></div><p>{signal.detail}</p></article>)}</div>{result.contextSignals.length === 0 && <p className="muted">No se detectaron señales específicas. Añade contexto para obtener una lectura más útil.</p>}</div>}
         {tab === "evidencia" && <div className="tab-panel"><div className="evidence-grid">{result.analyzedNews.map((news) => <article className="evidence-item" key={`${news.date}-${news.title}`}><div><strong>{news.category}</strong><span>{news.date} · {news.source}</span></div><p>{news.title}</p><b className={news.impact > 0 ? "negative" : "positive"}>{news.impact > 0 ? "Aumenta riesgo" : "Reduce riesgo"} · {news.relevance}% relevancia</b></article>)}</div>{result.analyzedNews.length === 0 && <p className="muted">No hay evidencia demo para este rango.</p>}</div>}
         {tab === "relaciones" && <div className="tab-panel"><div className="relation-grid">{result.relations.map((relation) => <article className="relation-item" key={relation.symbol}><div><strong>{relation.name} ({relation.symbol})</strong><span>{relation.type}</span></div><div className="relation-strength"><span style={{ width: `${relation.strength * 100}%` }} /><b>{Math.round(relation.strength * 100)}%</b></div><p>Impacto transmitido: {relation.impact > 0 ? "+" : ""}{relation.impact} puntos de riesgo</p></article>)}</div>{result.relations.length === 0 && <p className="muted">Las relaciones están desactivadas para este escenario.</p>}</div>}
         {tab === "escenarios" && <div className="tab-panel"><ScenarioBars result={result} /></div>}

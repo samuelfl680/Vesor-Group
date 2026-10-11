@@ -3,6 +3,7 @@ export type Sensitivity = "baja" | "media" | "alta";
 
 export type SimulationConfig = {
   company: string;
+  context: string;
   startDate: string;
   endDate: string;
   mode: AnalysisMode;
@@ -17,6 +18,7 @@ export type SimulationConfig = {
 export type SimulationPoint = { risk: number; density: number };
 export type Scenario = { name: string; probability: number; description: string };
 export type Relation = { symbol: string; name: string; type: string; strength: number; impact: number };
+export type ContextSignal = { label: string; detail: string; impact: number };
 
 export type SimulationResult = {
   company: DemoCompany;
@@ -26,6 +28,8 @@ export type SimulationResult = {
   trend: "alcista" | "estable" | "correccion";
   analyzedNews: NewsItem[];
   relations: Relation[];
+  contextSignals: ContextSignal[];
+  advice: string;
   distribution: SimulationPoint[];
   scenarios: Scenario[];
   warning: string | null;
@@ -111,6 +115,7 @@ export const DEMO_COMPANIES: DemoCompany[] = [
 
 export const DEFAULT_SIMULATION: SimulationConfig = {
   company: "NVDA",
+  context: "",
   startDate: "2026-09-01",
   endDate: "2026-10-11",
   mode: "automatico",
@@ -123,6 +128,30 @@ export const DEFAULT_SIMULATION: SimulationConfig = {
 };
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+
+function analyzeContext(context: string) {
+  const normalized = context.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const signals: ContextSignal[] = [];
+  const addSignal = (pattern: RegExp, label: string, detail: string, impact: number) => {
+    if (pattern.test(normalized)) signals.push({ label, detail, impact });
+  };
+
+  addSignal(/duplica|duplicar|dobla|doblar/, "Rentabilidad extraordinaria", "Prometer duplicar el dinero requiere una verificación especialmente estricta.", 24);
+  addSignal(/garantiz|sin riesgo|seguro|nunca pierde/, "Promesa de garantía", "Ninguna inversión legítima puede eliminar por completo el riesgo.", 22);
+  addSignal(/30 dias|30 dias|en un mes|rapido|urgente|solo hoy|cupo|presion/, "Presión o plazo inusual", "La urgencia puede reducir la capacidad de verificar la oportunidad.", 14);
+  addSignal(/billetera cripto|wallet|cripto|usdt|bitcoin|pagar.*direccion/, "Pago difícil de recuperar", "Los pagos a billeteras personales pueden dificultar la trazabilidad y recuperación.", 20);
+  addSignal(/influencer|referido|reclut|comision por traer|whatsapp|telegram/, "Promoción informal", "Conviene confirmar la entidad, el producto y el origen de los rendimientos.", 12);
+  addSignal(/regulad|supervisad|entidad financiera|registro oficial/, "Señal regulatoria", "La regulación debe comprobarse en fuentes oficiales, no solo en el texto promocional.", -8);
+
+  const score = clamp(signals.reduce((total, signal) => total + signal.impact, 0), 0, 80);
+  const advice = score >= 35
+    ? "No transfieras dinero todavía. Verifica la entidad, el modelo de negocio, la regulación y si existe una forma realista de recuperar los fondos."
+    : signals.length > 0
+      ? "Compara esta información con fuentes oficiales y evita decidir solo por una promesa o una recomendación informal."
+      : "Añade detalles sobre la promesa, la entidad, el pago y la evidencia disponible para obtener una lectura más útil.";
+
+  return { signals, score, advice };
+}
 
 function dateDistance(start: string, end: string) {
   return Math.max(1, Math.round((Date.parse(end) - Date.parse(start)) / 86_400_000));
@@ -137,6 +166,7 @@ function confidenceFor(config: SimulationConfig, newsCount: number) {
 // This is a deterministic prototype model: later, provider outputs can replace these demo signals.
 export function runSimulation(config: SimulationConfig): SimulationResult {
   const company = DEMO_COMPANIES.find((item) => item.symbol === config.company) || DEMO_COMPANIES[0];
+  const contextAnalysis = analyzeContext(config.context);
   const start = Date.parse(config.startDate);
   const end = Date.parse(config.endDate);
   const hasValidDates = Number.isFinite(start) && Number.isFinite(end) && end >= start;
@@ -155,7 +185,8 @@ export function runSimulation(config: SimulationConfig): SimulationResult {
     : 0;
   const relationImpact = relations.reduce((total, relation) => total + relation.impact, 0);
   const sensitivityMultiplier = config.sensitivity === "alta" ? 1.25 : config.sensitivity === "baja" ? 0.75 : 1;
-  const meanRisk = clamp(Math.round(company.baseRisk + (newsImpact + relationImpact) * sensitivityMultiplier), 5, 95);
+  const contextImpact = contextAnalysis.score / 4;
+  const meanRisk = clamp(Math.round(company.baseRisk + (newsImpact + relationImpact + contextImpact) * sensitivityMultiplier), 5, 95);
   const standardDeviation = clamp(
     Math.round(18 - config.level * 1.8 + (news.length < 2 ? 6 : 0) + (hasValidDates ? 0 : 8)),
     4,
@@ -185,6 +216,8 @@ export function runSimulation(config: SimulationConfig): SimulationResult {
     trend,
     analyzedNews: news,
     relations,
+    contextSignals: contextAnalysis.signals,
+    advice: contextAnalysis.advice,
     distribution,
     scenarios: [
       { name: "Favorable", probability: clamp(28 - meanRisk / 8, 8, 32), description: "Noticias positivas y relaciones estables." },

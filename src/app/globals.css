@@ -77,6 +77,7 @@ textarea { min-height: 110px; resize: vertical; }
   padding: 10px 12px; border-radius: 10px; margin-top: 12px; font-size: 14px;
 }
 .field-error { color: #b42323; font-size: 13px; margin-top: 4px; }
+.field-hint { color: var(--muted); font-size: 12px; margin: 6px 0 0; }
 .info {
   background: #102f36; border: 1px solid #155e75; color: #a5f3fc;
   padding: 10px 12px; border-radius: 10px; margin-top: 12px; font-size: 14px;
@@ -198,13 +199,24 @@ input[type="range"] { accent-color: var(--primary); padding: 0; }
 .scenario-track { height: 9px; border-radius: 99px; background: #18181b; overflow: hidden; }
 .scenario-track span { display: block; height: 100%; background: linear-gradient(90deg, var(--cyan), var(--primary)); border-radius: inherit; }
 .scenario-row p { color: var(--muted); font-size: 13px; margin: 6px 0 0; }
+.context-panel { display: grid; gap: 14px; }
+.advice-box { background: #102f36; border: 1px solid #155e75; border-radius: 10px; padding: 15px; }
+.advice-box strong { color: var(--cyan); }
+.advice-box p { margin: 8px 0; }
+.advice-box small { color: #a5f3fc; font-size: 11px; }
+.context-signals { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.context-signal { background: var(--card-raised); border: 1px solid var(--border); border-radius: 10px; padding: 13px; }
+.context-signal div { display: flex; justify-content: space-between; gap: 8px; }
+.context-signal strong { color: var(--primary); font-size: 13px; }
+.context-signal b { color: var(--red); font-size: 12px; white-space: nowrap; }
+.context-signal p { color: var(--muted); font-size: 13px; margin: 8px 0 0; }
 
 @media (max-width: 640px) {
   .simulator-heading, .simulator-config-head, .result-headline { flex-direction: column; }
   .mode-switch { width: 100%; }
   .mode-switch button { flex: 1; }
   .risk-number { text-align: left; }
-  .result-metrics, .evidence-grid, .relation-grid { grid-template-columns: 1fr; }
+  .result-metrics, .evidence-grid, .relation-grid, .context-signals { grid-template-columns: 1fr; }
 }
 
 @media print {
