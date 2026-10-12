@@ -1,23 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { createClient } from "@/lib/supabase/server";
 import ScrollReveal from "@/components/ScrollReveal";
 import ProcessTrail from "@/components/ProcessTrail";
 
-export const dynamic = "force-dynamic";
-
-export default async function Home() {
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  const destination = user ? "/analizar" : "/login";
-  const destinationLabel = "Abrir simulador";
-
+export default function Home() {
   return (
     <div className="landing-home">
       <div className="landing-sparkles" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div>
-      <div className="landing-topbar"><Link href="/login" className="landing-login-link">Iniciar sesión</Link><Link href={destination} className="btn landing-sim-button">{destinationLabel} <span aria-hidden="true">↗</span></Link></div>
       <section className="landing-hero">
         <div className="landing-copy">
           <Image src="/vesor-hero-mark.png" alt="Vesor Group" width={390} height={130} className="landing-hero-mark" priority />
@@ -53,7 +42,6 @@ export default async function Home() {
 
       <ScrollReveal className="landing-final-cta-wrap"><section className="landing-final-cta">
         <div><p className="landing-kicker">Tu siguiente decisión merece contexto</p><h2>Empieza con una pregunta. Explora los escenarios.</h2></div>
-        <Link href={destination} className="btn landing-primary">{destinationLabel}</Link>
       </section></ScrollReveal>
       <p className="landing-disclaimer">Vesor es una herramienta informativa. Sus estimaciones no constituyen asesoría financiera.</p>
     </div>
