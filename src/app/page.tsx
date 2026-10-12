@@ -14,7 +14,7 @@ export default function Home() {
           <Image src="/vesor-hero-mark.png" alt="Vesor Group" width={390} height={130} className="landing-hero-mark" priority />
           <h1>Entiende el riesgo antes de mover tu dinero.</h1>
           <p className="landing-description">
-            Simula escenarios empresariales, conecta señales y convierte la incertidumbre en contexto accionable.
+            Explora posibles resultados, revisa las señales y entiende mejor los riesgos antes de invertir.
           </p>
           <div className="landing-actions">
             <Link href="/analizar" className="landing-text-link">Explorar el simulador <span aria-hidden="true">↗</span></Link>
