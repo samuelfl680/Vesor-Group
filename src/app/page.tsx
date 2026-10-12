@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
-import MarketBoard from "@/components/MarketBoard";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export const dynamic = "force-dynamic";
@@ -37,16 +36,14 @@ export default async function Home() {
         <div className="scenario-orbit" aria-label="Visualización de escenarios de riesgo" role="img">
           <div className="orbit-ring orbit-ring-large"><span /></div>
           <div className="orbit-ring orbit-ring-small"><span /></div>
-          <div className="connection-line connection-one" />
-          <div className="connection-line connection-two" />
-          <div className="connection-line connection-three" />
-          <div className="orbit-node node-one"><Image src="/company-logos/tsmc.svg" alt="TSMC" width={72} height={30} /></div>
-          <div className="orbit-node node-two"><Image src="/company-logos/microsoft.svg" alt="Microsoft" width={82} height={32} /></div>
-          <div className="orbit-node node-three"><Image src="/company-logos/amd.svg" alt="AMD" width={60} height={30} /></div>
+          <div className="orbit-company orbit-company-one"><div className="orbit-node"><Image src="/company-logos/tsmc.svg" alt="TSMC" width={72} height={30} /></div></div>
+          <div className="orbit-company orbit-company-two"><div className="orbit-node"><Image src="/company-logos/microsoft.svg" alt="Microsoft" width={82} height={32} /></div></div>
+          <div className="orbit-company orbit-company-three"><div className="orbit-node"><Image src="/company-logos/amd.svg" alt="AMD" width={60} height={30} /></div></div>
+          <div className="orbit-company orbit-company-four"><div className="orbit-node"><Image src="/company-logos/nvidia.svg" alt="NVIDIA" width={70} height={30} /></div></div>
           <div className="orbit-core">
             <Image src="/vesor-group-logo.svg" alt="Vesor Group" width={58} height={58} className="orbit-brand-image" />
-            <span>NVIDIA</span>
-            <strong>64%</strong>
+            <span>Vesor Group</span>
+            <strong>Escenarios</strong>
           </div>
           <div className="orbit-label label-top">Escenarios</div>
           <div className="orbit-label label-bottom">Relaciones</div>
@@ -71,11 +68,6 @@ export default async function Home() {
         <article><span>02</span><h2>Probabilidad</h2><p>Una estimación con incertidumbre visible, no una promesa.</p></article>
         <article><span>03</span><h2>Perspectiva</h2><p>Relaciones empresariales para entender el efecto de cada señal.</p></article>
       </section></ScrollReveal>
-
-      <ScrollReveal className="landing-market-preview">
-        <div className="landing-section-heading"><p className="landing-kicker">Una mirada al mercado</p><h2>Empresas que puedes seguir</h2><Link href="/analizar" className="landing-text-link">Ver simulador <span aria-hidden="true">↗</span></Link></div>
-        <MarketBoard />
-      </ScrollReveal>
 
       <ScrollReveal className="landing-final-cta-wrap"><section className="landing-final-cta">
         <div><p className="landing-kicker">Tu siguiente decisión merece contexto</p><h2>Empieza con una pregunta. Explora los escenarios.</h2></div>
