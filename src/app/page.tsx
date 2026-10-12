@@ -38,7 +38,7 @@ export default async function Home() {
           <div className="orbit-company orbit-company-three"><div className="orbit-node"><Image src="/company-logos/amd.svg" alt="AMD" width={60} height={30} /></div></div>
           <div className="orbit-company orbit-company-four"><div className="orbit-node"><Image src="/company-logos/nvidia.svg" alt="NVIDIA" width={70} height={30} /></div></div>
           <div className="orbit-core">
-            <Image src="/vesor-orbit-logo.png" alt="Vesor" width={180} height={120} className="orbit-brand-image" />
+            <Image src="/vesor-orbit-logo-final.png" alt="Vesor" width={154} height={86} className="orbit-brand-image" />
           </div>
         </div>
       </section>
