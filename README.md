@@ -78,6 +78,3 @@ supabase/schema.sql       Esquema SQL + políticas RLS
 - Solo se pueden simular tres empresas (NVIDIA, Tesla y Microsoft).
 - Los resultados todavía no se guardan: el historial y la descarga en PDF pasan al Release 2.
 
-## Aviso
-
-Vesor es informativo y no constituye asesoría financiera.
