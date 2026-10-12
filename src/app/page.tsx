@@ -2,11 +2,13 @@ import Link from "next/link";
 import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
 import ProcessTrail from "@/components/ProcessTrail";
+import FloatingCompanies from "@/components/FloatingCompanies";
 
 export default function Home() {
   return (
     <div className="landing-home">
       <div className="landing-sparkles" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div>
+      <FloatingCompanies />
       <section className="landing-hero">
         <div className="landing-copy">
           <Image src="/vesor-hero-mark.png" alt="Vesor Group" width={390} height={130} className="landing-hero-mark" priority />
