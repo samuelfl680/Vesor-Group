@@ -19,6 +19,7 @@ export default async function Home() {
       <div className="landing-sparkles" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div>
       <section className="landing-hero">
         <div className="landing-copy">
+          <Image src="/vesor-hero-mark.png" alt="Vesor Group" width={390} height={130} className="landing-hero-mark" priority />
           <h1>Entiende el riesgo antes de mover tu dinero.</h1>
           <p className="landing-description">
             Simula escenarios empresariales, conecta señales y convierte la incertidumbre en contexto accionable.
@@ -37,7 +38,7 @@ export default async function Home() {
           <div className="orbit-company orbit-company-three"><div className="orbit-node"><Image src="/company-logos/amd.svg" alt="AMD" width={60} height={30} /></div></div>
           <div className="orbit-company orbit-company-four"><div className="orbit-node"><Image src="/company-logos/nvidia.svg" alt="NVIDIA" width={70} height={30} /></div></div>
           <div className="orbit-core">
-            <Image src="/vesor-invest-advisory.png" alt="Vesor Invest and Advisory" width={180} height={120} className="orbit-brand-image" />
+            <Image src="/vesor-orbit-logo.png" alt="Vesor" width={180} height={120} className="orbit-brand-image" />
           </div>
         </div>
       </section>
