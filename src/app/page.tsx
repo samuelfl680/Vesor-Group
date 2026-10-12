@@ -12,11 +12,12 @@ export default async function Home() {
     data: { user },
   } = await supabase.auth.getUser();
   const destination = user ? "/analizar" : "/login";
-  const destinationLabel = user ? "Abrir simulador" : "Iniciar sesión";
+  const destinationLabel = "Abrir simulador";
 
   return (
     <div className="landing-home">
       <div className="landing-sparkles" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div>
+      <div className="landing-topbar"><Link href={destination} className="btn landing-sim-button">{destinationLabel} <span aria-hidden="true">↗</span></Link></div>
       <section className="landing-hero">
         <div className="landing-copy">
           <Image src="/vesor-hero-mark.png" alt="Vesor Group" width={390} height={130} className="landing-hero-mark" priority />
@@ -25,7 +26,6 @@ export default async function Home() {
             Simula escenarios empresariales, conecta señales y convierte la incertidumbre en contexto accionable.
           </p>
           <div className="landing-actions">
-            <Link href={destination} className="btn landing-primary">{destinationLabel}</Link>
             <Link href="/analizar" className="landing-text-link">Explorar el simulador <span aria-hidden="true">↗</span></Link>
           </div>
         </div>
