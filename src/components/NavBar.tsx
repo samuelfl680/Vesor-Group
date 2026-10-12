@@ -32,10 +32,7 @@ export default async function NavBar() {
             <LogoutButton />
           </>
         ) : (
-          <>
-            <Link href="/analizar">Simulador</Link>
-            <Link href="/login">Entrar a la demo</Link>
-          </>
+          <Link href="/login">Iniciar sesión</Link>
         )}
       </div>
     </nav>
