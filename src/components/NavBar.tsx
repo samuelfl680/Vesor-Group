@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import LogoutButton from "./LogoutButton";
 
@@ -13,7 +14,14 @@ export default async function NavBar() {
   return (
     <nav className="nav">
       <Link href="/" className="brand">
-        Vesor
+        <Image
+          src="/vesor-group-logo.png"
+          alt="Vesor Group"
+          width={156}
+          height={50}
+          priority
+          className="brand-logo"
+        />
       </Link>
       <div className="links">
         {user ? (
