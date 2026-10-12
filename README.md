@@ -1,5 +1,6 @@
 # Vesor — Investment & Advisory (MVP v0.1)
 <img width="416" height="134" alt="image" src="https://github.com/user-attachments/assets/e75516cb-5b91-4e97-972b-77ae0a1e75a4" />
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/e9d1d445-e721-4af7-9d84-5d93a9f75b56" />
 
 Plataforma web que ayuda a un inversionista principiante a evaluar el riesgo de una oportunidad de inversión antes de poner su dinero. La persona entra a la demo sin crear cuenta, describe la oportunidad que le ofrecieron y ejecuta una simulación. Recibe un riesgo estimado, las señales de riesgo encontradas en su descripción y una recomendación de qué verificar.
 
