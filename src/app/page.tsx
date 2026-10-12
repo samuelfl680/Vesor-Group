@@ -18,7 +18,10 @@ export default async function Home() {
       <div className="landing-sparkles" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div>
       <section className="landing-hero">
         <div className="landing-copy">
-          <h1>Decide con contexto.</h1>
+          <h1>Entiende el riesgo antes de mover tu dinero.</h1>
+          <p className="landing-description">
+            Simula escenarios empresariales, conecta señales y convierte la incertidumbre en contexto accionable.
+          </p>
           <div className="landing-actions">
             <Link href={destination} className="btn landing-primary">{destinationLabel}</Link>
             <Link href="/analizar" className="landing-text-link">Explorar el simulador <span aria-hidden="true">↗</span></Link>
@@ -33,7 +36,7 @@ export default async function Home() {
           <div className="orbit-company orbit-company-three"><div className="orbit-node"><Image src="/company-logos/amd.svg" alt="AMD" width={60} height={30} /></div></div>
           <div className="orbit-company orbit-company-four"><div className="orbit-node"><Image src="/company-logos/nvidia.svg" alt="NVIDIA" width={70} height={30} /></div></div>
           <div className="orbit-core">
-            <Image src="/vesor-invest-advisory.svg" alt="Vesor Invest and Advisory" width={138} height={138} className="orbit-brand-image" />
+            <Image src="/vesor-eye-logo.svg" alt="Vesor" width={170} height={122} className="orbit-brand-image" />
           </div>
         </div>
       </section>
