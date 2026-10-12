@@ -2,7 +2,8 @@
 <img width="2169" height="725" alt="image" src="https://github.com/user-attachments/assets/9aa029ee-96cb-4eed-bbfa-c1a1dcc4a39f" />
 
 
-<img width="1024" height="572" alt="image" src="https://github.com/user-attachments/assets/364bc041-ad1e-4ee1-8604-337496344bc3" />
+<img width="1678" height="937" alt="image" src="https://github.com/user-attachments/assets/e0a9879e-aba3-49cb-abb9-d290cebfc9d1" />
+
 
 
 Plataforma web que ayuda a un inversionista principiante a evaluar el riesgo de una oportunidad de inversión antes de poner su dinero. La persona entra a la demo sin crear cuenta, describe la oportunidad que le ofrecieron y ejecuta una simulación. Recibe un riesgo estimado, las señales de riesgo encontradas en su descripción y una recomendación de qué verificar.
