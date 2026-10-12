@@ -17,7 +17,7 @@ export default async function Home() {
   return (
     <div className="landing-home">
       <div className="landing-sparkles" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div>
-      <div className="landing-topbar"><Link href={destination} className="btn landing-sim-button">{destinationLabel} <span aria-hidden="true">↗</span></Link></div>
+      <div className="landing-topbar"><Link href="/login" className="landing-login-link">Iniciar sesión</Link><Link href={destination} className="btn landing-sim-button">{destinationLabel} <span aria-hidden="true">↗</span></Link></div>
       <section className="landing-hero">
         <div className="landing-copy">
           <Image src="/vesor-hero-mark.png" alt="Vesor Group" width={390} height={130} className="landing-hero-mark" priority />
