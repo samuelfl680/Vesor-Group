@@ -15,21 +15,13 @@ export default async function Home() {
 
   return (
     <div className="landing-home">
-      <div className="landing-glow landing-glow-cyan" />
-      <div className="landing-glow landing-glow-gold" />
+      <div className="landing-sparkles" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div>
       <section className="landing-hero">
         <div className="landing-copy">
-          <p className="landing-kicker">Vesor Group · Inteligencia para decidir</p>
-          <h1>Entiende el riesgo antes de mover tu dinero.</h1>
-          <p className="landing-description">
-            Simula escenarios empresariales, conecta señales y convierte la incertidumbre en contexto accionable.
-          </p>
+          <h1>Decide con contexto.</h1>
           <div className="landing-actions">
             <Link href={destination} className="btn landing-primary">{destinationLabel}</Link>
             <Link href="/analizar" className="landing-text-link">Explorar el simulador <span aria-hidden="true">↗</span></Link>
-          </div>
-          <div className="landing-trust">
-            <span className="trust-dot" /> Datos, relaciones y escenarios en una sola lectura
           </div>
         </div>
 
@@ -41,12 +33,8 @@ export default async function Home() {
           <div className="orbit-company orbit-company-three"><div className="orbit-node"><Image src="/company-logos/amd.svg" alt="AMD" width={60} height={30} /></div></div>
           <div className="orbit-company orbit-company-four"><div className="orbit-node"><Image src="/company-logos/nvidia.svg" alt="NVIDIA" width={70} height={30} /></div></div>
           <div className="orbit-core">
-            <Image src="/vesor-group-logo.svg" alt="Vesor Group" width={58} height={58} className="orbit-brand-image" />
-            <span>Vesor Group</span>
-            <strong>Escenarios</strong>
+            <Image src="/vesor-invest-advisory.svg" alt="Vesor Invest and Advisory" width={138} height={138} className="orbit-brand-image" />
           </div>
-          <div className="orbit-label label-top">Escenarios</div>
-          <div className="orbit-label label-bottom">Relaciones</div>
         </div>
       </section>
 
