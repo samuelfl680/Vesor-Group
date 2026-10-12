@@ -15,10 +15,10 @@ export default async function NavBar() {
     <nav className="nav">
       <Link href="/" className="brand">
         <Image
-          src="/vesor-group-logo.png"
+          src="/vesor-group-logo.svg"
           alt="Vesor Group"
-          width={156}
-          height={50}
+          width={76}
+          height={76}
           priority
           className="brand-logo"
         />

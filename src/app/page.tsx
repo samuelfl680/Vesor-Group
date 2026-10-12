@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import MarketBoard from "@/components/MarketBoard";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const dynamic = "force-dynamic";
 
@@ -35,12 +36,15 @@ export default async function Home() {
         <div className="scenario-orbit" aria-label="Visualización de escenarios de riesgo" role="img">
           <div className="orbit-ring orbit-ring-large"><span /></div>
           <div className="orbit-ring orbit-ring-small"><span /></div>
-          <div className="orbit-node node-one">R</div>
-          <div className="orbit-node node-two">N</div>
-          <div className="orbit-node node-three">C</div>
+          <div className="connection-line connection-one" />
+          <div className="connection-line connection-two" />
+          <div className="connection-line connection-three" />
+          <div className="orbit-node node-one">TSM</div>
+          <div className="orbit-node node-two">MSFT</div>
+          <div className="orbit-node node-three">AMD</div>
           <div className="orbit-core">
             <ImageMark />
-            <span>Riesgo</span>
+            <span>NVIDIA</span>
             <strong>64%</strong>
           </div>
           <div className="orbit-label label-top">Escenarios</div>
@@ -48,21 +52,21 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="landing-principles" aria-label="Principios de Vesor">
+      <ScrollReveal className="landing-principles-wrap"><section className="landing-principles" aria-label="Principios de Vesor">
         <article><span>01</span><h2>Evidencia</h2><p>Noticias y contexto filtrados antes de construir una lectura.</p></article>
         <article><span>02</span><h2>Probabilidad</h2><p>Una estimación con incertidumbre visible, no una promesa.</p></article>
         <article><span>03</span><h2>Perspectiva</h2><p>Relaciones empresariales para entender el efecto de cada señal.</p></article>
-      </section>
+      </section></ScrollReveal>
 
-      <section className="landing-market-preview">
+      <ScrollReveal className="landing-market-preview">
         <div className="landing-section-heading"><p className="landing-kicker">Una mirada al mercado</p><h2>Empresas que puedes seguir</h2><Link href="/analizar" className="landing-text-link">Ver simulador <span aria-hidden="true">↗</span></Link></div>
         <MarketBoard />
-      </section>
+      </ScrollReveal>
 
-      <section className="landing-final-cta">
+      <ScrollReveal className="landing-final-cta-wrap"><section className="landing-final-cta">
         <div><p className="landing-kicker">Tu siguiente decisión merece contexto</p><h2>Empieza con una pregunta. Explora los escenarios.</h2></div>
         <Link href={destination} className="btn landing-primary">{destinationLabel}</Link>
-      </section>
+      </section></ScrollReveal>
       <p className="landing-disclaimer">Vesor es una herramienta informativa. Sus estimaciones no constituyen asesoría financiera.</p>
     </div>
   );
