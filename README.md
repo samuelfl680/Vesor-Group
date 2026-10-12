@@ -1,8 +1,8 @@
 # Vesor — Investment & Advisory (MVP v0.1)
 <img width="2169" height="725" alt="image" src="https://github.com/user-attachments/assets/9aa029ee-96cb-4eed-bbfa-c1a1dcc4a39f" />
 
+<img width="1679" height="937" alt="Logotipo de Ojo con Marca Verde" src="https://github.com/user-attachments/assets/7ae19985-543f-4ac8-8de9-cdbaaecbd80c" />
 
-<img width="1678" height="937" alt="image" src="https://github.com/user-attachments/assets/e0a9879e-aba3-49cb-abb9-d290cebfc9d1" />
 
 
 
