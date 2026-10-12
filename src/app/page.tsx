@@ -24,8 +24,8 @@ export default function Home() {
         <div className="scenario-orbit" aria-label="Visualización de escenarios de riesgo" role="img">
           <div className="orbit-ring orbit-ring-large"><span /></div>
           <div className="orbit-ring orbit-ring-small"><span /></div>
-          <div className="orbit-company orbit-company-one"><div className="orbit-node"><Image src="/company-logos/tsmc.svg" alt="TSMC" width={72} height={30} /></div></div>
-          <div className="orbit-company orbit-company-two"><div className="orbit-node"><Image src="/company-logos/microsoft.svg" alt="Microsoft" width={82} height={32} /></div></div>
+          <div className="orbit-company orbit-company-one"><div className="orbit-node"><Image src="/company-logos/tsmc-brand.svg" alt="TSMC" width={72} height={30} /></div></div>
+          <div className="orbit-company orbit-company-two"><div className="orbit-node"><Image src="/company-logos/microsoft-brand.svg" alt="Microsoft" width={82} height={32} /></div></div>
           <div className="orbit-company orbit-company-three"><div className="orbit-node"><Image src="/company-logos/amd.svg" alt="AMD" width={60} height={30} /></div></div>
           <div className="orbit-company orbit-company-four"><div className="orbit-node"><Image src="/company-logos/nvidia.svg" alt="NVIDIA" width={70} height={30} /></div></div>
           <div className="orbit-core">
