@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const COMPANIES = [
   ["apple", "Apple"], ["amazon", "Amazon"], ["broadcom", "Broadcom"], ["cocacola", "Coca-Cola"],
-  ["intuit", "Intuit"], ["mastercard", "Mastercard"], ["meta", "Meta"], ["netflix", "Netflix"],
+  ["intuit", "Intuit"], ["mastercard-brand", "Mastercard"], ["meta", "Meta"], ["netflix", "Netflix"],
   ["paypal", "PayPal"], ["qualcomm", "Qualcomm"], ["uber", "Uber"], ["visa", "Visa"],
   ["adobe", "Adobe"], ["oracle", "Oracle"], ["salesforce", "Salesforce"], ["walmart", "Walmart"],
 ] as const;
