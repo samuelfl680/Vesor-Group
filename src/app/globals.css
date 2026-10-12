@@ -216,13 +216,14 @@ main.container:has(.landing-home) { max-width: none; width: 100%; padding: 0; }
 .process-heading > p:last-child { color: #96a4b4; font-size: 16px; margin-top: 14px; }
 .process-track { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 42px; }
 .process-track::before, .process-progress { content: ""; position: absolute; top: 28px; left: 12.5%; right: 12.5%; height: 1px; background: #3a4652; z-index: 0; }
-.process-progress { transform-origin: left center; background: linear-gradient(90deg, var(--cyan), var(--primary)); animation: process-trail 8s linear infinite; box-shadow: 0 0 12px rgba(103,232,249,.5); z-index: 1; }
+.process-progress { transform-origin: left center; background: linear-gradient(90deg, var(--cyan), var(--primary)); transition: transform 1.65s cubic-bezier(.22,.75,.2,1); box-shadow: 0 0 12px rgba(103,232,249,.5); z-index: 1; }
 .process-progress::after { content: ""; position: absolute; right: -6px; top: -6px; width: 12px; height: 12px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 16px 4px rgba(212,175,55,.65); }
-@keyframes process-trail { 0%, 8% { opacity: 0; transform: scaleX(0); } 12% { opacity: 1; transform: scaleX(0); } 25%, 31% { opacity: 1; transform: scaleX(.3333); } 50%, 56% { opacity: 1; transform: scaleX(.6666); } 75%, 84% { opacity: 1; transform: scaleX(1); } 92%, 100% { opacity: 0; transform: scaleX(1); } }
-.process-step { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; opacity: .45; animation: process-step 8s linear infinite; animation-delay: calc(var(--step-index) * -2s); }
+.process-step { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; opacity: .45; transition: opacity .45s ease, transform .45s cubic-bezier(.2,.8,.2,1); }
+.process-step-active { opacity: 1; transform: translateY(-6px); }
 .process-icon { position: relative; z-index: 2; background: #202731; }
-@keyframes process-step { 0%, 25% { opacity: 1; transform: translateY(-5px); } 25.01%, 100% { opacity: .45; transform: translateY(0); } }
 .process-icon { display: flex; align-items: center; justify-content: center; width: 58px; height: 58px; border: 1px solid #526170; border-radius: 50%; background: #202731; color: #9caab9; margin-bottom: 14px; }
+.process-step-active .process-icon { border-color: var(--primary); color: var(--primary); box-shadow: 0 0 0 8px rgba(212,175,55,.12), 0 0 22px rgba(212,175,55,.35); animation: process-pop .6s cubic-bezier(.2,1.4,.4,1); }
+@keyframes process-pop { 0% { transform: scale(.82); } 65% { transform: scale(1.18); } 100% { transform: scale(1); } }
 .process-icon svg { width: 25px; height: 25px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
 .process-step strong { font-size: 17px; }
 .process-step p { color: #8c9aaa; font-size: 13px; line-height: 1.4; margin: 5px auto 0; max-width: 18ch; }
