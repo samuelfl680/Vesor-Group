@@ -50,7 +50,7 @@ export default async function Home() {
             ["evidence", "Evidencia", "Filtra señales relevantes."],
             ["probability", "Probabilidad", "Estima riesgo e incertidumbre."],
             ["relations", "Relaciones", "Conecta empresas y escenarios."],
-          ].map(([kind, title, text], index) => <article className="process-step" key={kind} style={{ "--step-delay": `${index * 1.4}s` } as React.CSSProperties}><span className={`process-icon process-icon-${kind}`}>{TrailIcon(kind)}</span><strong>{title}</strong><p>{text}</p></article>)}
+          ].map(([kind, title, text], index) => <article className="process-step" key={kind} style={{ "--step-index": index } as React.CSSProperties}><span className={`process-icon process-icon-${kind}`}>{TrailIcon(kind)}</span><strong>{title}</strong><p>{text}</p></article>)}
         </div>
       </section></ScrollReveal>
 
