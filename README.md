@@ -1,5 +1,6 @@
 # Vesor — Investment & Advisory (MVP v0.1)
-<img width="1024" height="330" alt="image" src="https://github.com/user-attachments/assets/3427b329-99a0-41aa-8a0b-b220e0bf1d66" />
+<img width="2169" height="725" alt="image" src="https://github.com/user-attachments/assets/9aa029ee-96cb-4eed-bbfa-c1a1dcc4a39f" />
+
 
 <img width="1024" height="572" alt="image" src="https://github.com/user-attachments/assets/364bc041-ad1e-4ee1-8604-337496344bc3" />
 
