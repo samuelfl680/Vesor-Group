@@ -37,13 +37,13 @@ export default function Home() {
       <ScrollReveal className="landing-process-wrap"><ProcessTrail /></ScrollReveal>
 
       <ScrollReveal className="landing-principles-wrap"><section className="landing-principles" aria-label="Principios de Vesor">
-        <article><span>01</span><h2>Evidencia</h2><p>Noticias y contexto filtrados antes de construir una lectura.</p></article>
-        <article><span>02</span><h2>Probabilidad</h2><p>Una estimación con incertidumbre visible, no una promesa.</p></article>
-        <article><span>03</span><h2>Perspectiva</h2><p>Relaciones empresariales para entender el efecto de cada señal.</p></article>
+        <article><span>01</span><h2>Datos importantes</h2><p>Revisamos noticias y señales antes de mostrarte un resultado.</p></article>
+        <article><span>02</span><h2>Posibles resultados</h2><p>Comparamos lo bueno, lo malo y lo que todavía no se puede saber.</p></article>
+        <article><span>03</span><h2>Una visión más amplia</h2><p>Vemos cómo una empresa puede afectar a otras.</p></article>
       </section></ScrollReveal>
 
       <ScrollReveal className="landing-final-cta-wrap"><section className="landing-final-cta">
-        <div><p className="landing-kicker">Tu siguiente decisión merece contexto</p><h2>Empieza con una pregunta. Explora los escenarios.</h2></div>
+        <div><p className="landing-kicker">Tu siguiente decisión merece información clara</p><h2>Empieza con una pregunta. Explora lo que podría pasar.</h2></div>
       </section></ScrollReveal>
       <p className="landing-disclaimer">Vesor es una herramienta informativa. Sus estimaciones no constituyen asesoría financiera.</p>
     </div>

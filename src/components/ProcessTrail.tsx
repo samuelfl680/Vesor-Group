@@ -3,10 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 
 const STEPS = [
-  ["context", "Contexto", "Describe lo que sabes."],
-  ["evidence", "Evidencia", "Filtra señales relevantes."],
-  ["probability", "Probabilidad", "Estima riesgo e incertidumbre."],
-  ["relations", "Relaciones", "Conecta empresas y escenarios."],
+  ["context", "Lo que sabes", "Cuéntanos qué te ofrecieron."],
+  ["evidence", "Señales", "Revisa qué datos llaman la atención."],
+  ["probability", "Riesgo posible", "Compara resultados buenos y malos."],
+  ["relations", "Empresas conectadas", "Mira qué empresas pueden influir."],
 ] as const;
 
 export default function ProcessTrail() {
@@ -33,7 +33,7 @@ export default function ProcessTrail() {
 
   return (
     <section className="landing-process" aria-label="Cómo funciona el simulador">
-      <div className="process-heading"><p className="landing-kicker">Cómo funciona</p><h2>Del contexto a la simulación.</h2><p>Un recorrido breve: cada paso convierte una señal en una lectura más clara.</p></div>
+      <div className="process-heading"><p className="landing-kicker">Cómo funciona</p><h2>Entiende una oportunidad paso a paso.</h2><p>Vesor revisa lo que sabes y te muestra qué podría pasar.</p></div>
       <div className="process-track" ref={trackRef}>
         <div className="process-progress" style={{ transform: `scaleX(${activeStep / (STEPS.length - 1)})` }} />
         {STEPS.map(([kind, title, text], index) => <article className={`process-step ${activeStep === index ? "process-step-active" : ""}`} key={kind}>
