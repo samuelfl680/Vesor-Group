@@ -6,7 +6,7 @@
 
 
 
-Plataforma web que ayuda a un inversionista principiante a evaluar el riesgo de una oportunidad de inversión antes de poner su dinero. La persona entra a la demo sin crear cuenta, describe la oportunidad que le ofrecieron y ejecuta una simulación. Recibe un riesgo estimado, las señales de riesgo encontradas en su descripción y una recomendación de qué verificar.
+Plataforma web que ayuda a un inversionista principiante/avanzado a evaluar el riesgo de una oportunidad de inversión antes de poner su dinero. La persona entra a la demo sin crear cuenta, describe la oportunidad que le ofrecieron y ejecuta una simulación. Recibe un riesgo estimado, las señales de riesgo encontradas en su descripción y una recomendación de qué verificar.
 
 **URL pública:** https://vesor-group.vercel.app/
 
